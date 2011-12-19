@@ -1,7 +1,8 @@
 class Devise::RegistrationsController < ApplicationController
+
   prepend_before_filter :require_no_authentication, :only => [ :new, :create, :cancel ]
   prepend_before_filter :authenticate_scope!, :only => [:edit, :update, :destroy]
-  include Devise::Controllers::InternalHelpers
+  include Devise::Controllers::InternalHelpers  
 
   # GET /resource/sign_up
   def new
@@ -43,10 +44,13 @@ class Devise::RegistrationsController < ApplicationController
     session[:site_params].deep_merge!(params[:site]) if params[:site]
     @user = User.new(session[:user_params])
     @site = Site.new(session[:site_params])
-    @user.current_step = session[:user_basic]    
+    @user.current_step = session[:user_basic]
+    @sub_domain = params[:site][:name] if params[:site]
     if @user.valid?
       if params[:previous_button]
         @user.get_previous_step("Doctor")
+        @sub_domain = params[:site][:name] if params[:site]
+        @occupation = params[:user_detail][:occupation] if params[:user_detail]
       elsif @user.last_step?
         if @user.valid? && @site.valid?
           @site.save
@@ -56,6 +60,8 @@ class Devise::RegistrationsController < ApplicationController
         end
       else
         @user.get_next_step("Doctor")
+        @sub_domain = params[:site][:name] if params[:site]
+        @occupation = params[:user_detail][:occupation] if params[:user_detail]       
       end
       session[:user_basic] = @user.current_step
     end
@@ -66,7 +72,7 @@ class Devise::RegistrationsController < ApplicationController
       flash[:notice] = "You have signed up successfully. If enabled, a confirmation was sent to your e-mail."
       redirect_to("http://#{@site.name}.#{request.host}")
     end
-  end 
+  end
 
   # GET /resource/edit
   def edit
@@ -156,4 +162,7 @@ class Devise::RegistrationsController < ApplicationController
       send(:"authenticate_#{resource_name}!", true)
       self.resource = send(:"current_#{resource_name}")
     end
+    
+
+    
 end

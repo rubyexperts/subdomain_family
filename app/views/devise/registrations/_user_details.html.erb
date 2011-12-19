@@ -28,10 +28,10 @@
         <div class="titlebox_starts">
            <div class="titlebox_one"> Zipcode </div>
            <div class="titlebox_two"> <%= f.text_field :zipcode %> </div>
-        </div>
+        </div> 
         <div class="titleareass_starts">
-            <div class="titlebox_one"> Web Address </div>
-            http:// <input type="text" maxlength="75" id="site_name" name="site[name]" class="short" /> .familypractice.com 
+           <div class="titlebox_one"> Web Address </div>
+           http:// <input type="text" maxlength="75" id="site_name" name="site[name]" class="short" value=<%= @sub_domain.to_s %> /> .mfp.vpros.org 
         </div> <br /> 
-     
+ 
 </div>

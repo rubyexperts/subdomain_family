@@ -31,6 +31,7 @@
         <div class="titlebox_starts">
            <div class="titlebox_one"> Business/Occupation  </div>
            <div class="titlebox_two">  <%= user_detail.text_field :occupation %> </div>
+           <%= @occupation %>
         </div>
      <% end %>
         <div class="titleareass_starts">
@@ -51,7 +52,7 @@
         </div>
         <div class="titleareass_starts">
             <div class="titlebox_one"> Web Address </div>
-            http:// <input type="text" maxlength="75" id="site_name" name="site[name]" class="short" /> .familypractice.com 
+            http:// <input type="text" maxlength="75" id="site_name" name="site[name]" class="short" value=<%= @sub_domain.to_s %> /> .mfp.vpros.org
         </div> <br /> 
 
 </div>

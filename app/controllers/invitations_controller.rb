@@ -63,6 +63,7 @@ class InvitationsController < ApplicationController
      if @user.valid?
        if params[:previous_button]
          @user.get_previous_step(params[:type])
+         @ethnicity = params[:user_detail][:ethnicity] if params[:user_detail]
        elsif @user.last_step?
          @user_detail = UserDetail.new(params[:user_detail])
          if @user.valid? && @user_detail.valid?
@@ -75,6 +76,7 @@ class InvitationsController < ApplicationController
          end
        else
          @user.get_next_step(params[:type])
+         @ethnicity = params[:user_detail][:ethnicity] if params[:user_detail]
        end
        session[:user_basic] = @user.current_step
      end

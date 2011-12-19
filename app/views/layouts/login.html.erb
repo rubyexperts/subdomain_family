@@ -41,16 +41,16 @@ a:active {
                         <ul style="list-style:none;">
                           <li><%= link_to "Sign in", "/users/sign_in" %></li>
                           <li>
-                              <% if @current_site.nil? %>
+                              <% if @current_site.nil? || @current_site.name == "mfp" %>
                                   <%= link_to "Sign up", "/users/sign_up" %>
                               <% elsif @current_site.name == "admin" %>
                                   <%= link_to "Sign Up", "/users/sign_up" %>
-                              <% else %>
+                              <% elsif !@current_site.nil? && @current_site.name != "mfp"  %>
                                   <%= link_to "Registration", "/sign_up_user" %>
                               <% end %>
                           </li>
                           <li><%= link_to "Forgot your password?", "/users/password/new" %></li>
-                          <li><%= link_to "Invitations", "/send_invitation" %></li>                       
+                          <li><%= link_to "Invitations", "/send_invitation" %></li>
                         </ul>
                     </div>  <!-- top navigation pannel end -->
               </div> <!-- main menu pannel end -->

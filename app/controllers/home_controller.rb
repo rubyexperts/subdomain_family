@@ -2,7 +2,7 @@ class HomeController < ApplicationController
 
   before_filter :authenticate_user!  
   before_filter :selected_tab
-  layout 'default'
+  layout 'default', :exclude => [:admin]
  
   def index
     if current_user.is_admin?
@@ -23,6 +23,7 @@ class HomeController < ApplicationController
   def admin
     #flash[:notice]=" Logged in successfully"
     @select = "home"
+    render :layout => 'admin'
   end
   
   def staff
