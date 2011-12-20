@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111202044637) do
+ActiveRecord::Schema.define(:version => 20111219183201) do
 
   create_table "appointments", :force => true do |t|
     t.integer  "doctor_id"
@@ -133,6 +133,7 @@ ActiveRecord::Schema.define(:version => 20111202044637) do
     t.integer  "master_id"
     t.integer  "site_id"
     t.boolean  "terms_and_conditions"
+    t.boolean  "is_owner"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
