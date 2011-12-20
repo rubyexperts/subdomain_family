@@ -30,6 +30,10 @@ class User < ActiveRecord::Base
      site = Site.where('name = ?', conditions[:subdomain]).first
      self.find_by_email_and_site_id(conditions[:email], site.id) unless site.blank?
   end
+  
+  def current_owner
+    User.find(:first, :conditions => ['site_id = ? and is_owner = ?', self.site_id, true] )
+  end
 
   def name
     first_name + " " + last_name

@@ -37,7 +37,7 @@
                            </div>
                        </div>
          
-      <% if params[:type] == "Patient" ||  params[:type] == "Doctor" %>     
+      <% if params[:type] == "Patient" ||  params[:type] == "Doctor" %>
                <%= fields_for :user_detail do |user_detail| %>
                     <div class="birth_titlebox_starts">
                        <div class="birth_titlebox_one"> Date Of Birth </div>
@@ -50,14 +50,16 @@
                <% end %>
       <% end %>
       
-      <div class="titleareass_starts">
+      <% if params[:type] == "Patient" ||  params[:type] == "Doctor" %>
+          <div class="titleareass_starts">
                <div class="titleareass_one"> Legal Accept Form </div>
                <div class="titleareass_two">
                   <%= f.check_box :terms_and_conditions %> &nbsp;&nbsp;
-                    By clicking on Terms and Conditions above you are agreeing to the 
-                    Terms of Service above and both the Program Policy and the Privacy Policy.
+                    By clicking on <%= link_to "Terms and Conditions", "/terms", :target => "_blank" %> above you are agreeing to the 
+                    Terms of Service above and both the Program Policy and the <%= link_to "Privacy Policy", "/legal_policy", :target => "_blank" %>.
                </div>
-      </div>
+           </div>
+      <% end %>
       
 </div>
 

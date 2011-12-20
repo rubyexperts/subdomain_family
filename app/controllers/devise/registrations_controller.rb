@@ -14,31 +14,6 @@ class Devise::RegistrationsController < ApplicationController
     @user.current_step = session[:user_basic] 
   end
   
-   #  session[:user_params] ||= {}
-   #  @user = User.new(session[:user_params])
-  #   @user.current_step = session[:user_basic] 
-   #  render :layout => 'login'
-
-  # POST /resource
- # def create
-  #  build_resource
- #   raise "Eshwar".inspect
- #   if resource.save
- #     if resource.active_for_authentication?
- #       set_flash_message :notice, :signed_up if is_navigational_format?
- #       sign_in(resource_name, resource)
- #       respond_with resource, :location => redirect_location(resource_name, resource)
- #     else
- #       set_flash_message :notice, :inactive_signed_up, :reason => inactive_reason(resource) if is_navigational_format?
-  #      expire_session_data_after_sign_in!
-  #      respond_with resource, :location => after_inactive_sign_up_path_for(resource)
-  #    end
-  #  else
-  #    clean_up_passwords(resource)
-  #    respond_with_navigational(resource) { render_with_scope :new }
-  #  end
-  # end
-  
   def create
     session[:user_params].deep_merge!(params[:user]) if params[:user]
     session[:site_params].deep_merge!(params[:site]) if params[:site]
@@ -54,14 +29,15 @@ class Devise::RegistrationsController < ApplicationController
       elsif @user.last_step?
         if @user.valid? && @site.valid?
           @site.save
-          @user.type = "Admin"
+          @user.type = "Doctor"
+          @user.is_owner = true
           @user.site = @site
           @user.save
         end
       else
         @user.get_next_step("Doctor")
         @sub_domain = params[:site][:name] if params[:site]
-        @occupation = params[:user_detail][:occupation] if params[:user_detail]       
+        @occupation = params[:user_detail][:occupation] if params[:user_detail]
       end
       session[:user_basic] = @user.current_step
     end
@@ -70,7 +46,7 @@ class Devise::RegistrationsController < ApplicationController
     else
       session[:user_basic] = session[:user_params] = nil
       flash[:notice] = "You have signed up successfully. If enabled, a confirmation was sent to your e-mail."
-      redirect_to("http://#{@site.name}.#{request.host}")
+      redirect_to("http://#{@site.name}.#{request.host}:3000")
     end
   end
 

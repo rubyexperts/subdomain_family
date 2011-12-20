@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
      if(request.subdomain != nil)
         @current_site = Site.where('name = ?', request.subdomain.split(".").first).first
         if @current_site.nil?
-          redirect_to ("http://mfp.familypractice.in:3000") #development
+           redirect_to ("http://mfp.familypractice.in:3000") #development
           #redirect_to ("http://mfp.vtros.org") #production
         end
       else

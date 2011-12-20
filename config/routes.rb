@@ -47,6 +47,10 @@ Family::Application.routes.draw do
   match '/sign_up_user' => 'invitations#sign_up_user'
   match '/create_user' => 'invitations#create_user'
   
+  # Legal Policy & terms and condition Routes
+  match '/legal_policy' => 'home#legal_policy'
+  match '/terms' => 'home#terms'
+  
   # Redirection after sign_up page
   namespace :user do
     root :to => "home#index"

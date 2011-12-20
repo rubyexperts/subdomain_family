@@ -1,8 +1,9 @@
 class HomeController < ApplicationController
 
-  before_filter :authenticate_user!  
+  before_filter :authenticate_user!
+  skip_before_filter :authenticate_user!, :only => [:legal_policy, :terms]
   before_filter :selected_tab
-  layout 'default', :exclude => [:admin]
+  layout 'default', :exclude => [:admin, :legal_policy, :terms]
  
   def index
     if current_user.is_admin?
@@ -21,7 +22,6 @@ class HomeController < ApplicationController
   end
   
   def admin
-    #flash[:notice]=" Logged in successfully"
     @select = "home"
     render :layout => 'admin'
   end
@@ -30,7 +30,15 @@ class HomeController < ApplicationController
   end
   
   def company
-  end 
+  end
+  
+  def legal_policy
+    render :layout => 'login'
+  end
+  
+  def terms
+    render :layout => 'login'
+  end
   
   private
   

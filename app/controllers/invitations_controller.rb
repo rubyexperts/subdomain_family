@@ -8,7 +8,6 @@ class InvitationsController < ApplicationController
    
    # With Out Authentication
    skip_before_filter :authenticate_user!, :only => [:send_invitation, :sign_up_user, :create_user]
-   
   
    # This is from Admin Layout
    def new
@@ -68,7 +67,7 @@ class InvitationsController < ApplicationController
          @user_detail = UserDetail.new(params[:user_detail])
          if @user.valid? && @user_detail.valid?
             @user.site_id = @current_site.id 
-            @user.master_id = @current_site.site_admin.id
+            @user.master_id = @user.current_owner.id
             @user.type = "#{params[:type]}"
             @user.save
             @user_detail.user_id = @user

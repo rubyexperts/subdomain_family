@@ -5,15 +5,16 @@
 
      You have been invited to the Family Practice Site with the URL <br/>
      Click here ( 
-     <% if @current_site.nil? %>
-         <a href="http://<%= Configuration.site_link %>">http://<%= Configuration.site_link %></a>
+     <% if @current_site.nil? || @current_site.name == "mfp"  %>
+         <a href="http://<%= APP_CONFIG['site_url'] %>">http://<%= APP_CONFIG['site_url'] %></a>
      <% else %>
-         <a href="http://<%= @current_site.name %>.<%= Configuration.site_link %>">http://<%= @current_site.name %>.<%= Configuration.site_link %></a>
+         <a href="http://<%= @current_site.name %>.<%= APP_CONFIG['site_url'] %>">http://<%= @current_site.name %>.<%= APP_CONFIG['site_url'] %></a>
      <% end %> ) to register
   
 </p> 
-
+   
 <br/>
 <p>
     Thank you<br/>
     Family Practice Team
+</p>
