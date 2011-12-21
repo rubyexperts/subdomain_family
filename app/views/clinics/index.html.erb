@@ -5,9 +5,13 @@
        All Accounts
     </strong>
     &nbsp; | &nbsp; <%= link_to 'New Account', new_clinic_path %> <br/><br/>
-</div> <br/><br/>
+</div> <br/><br/><br/><br/>
 
-<%= flash[:notice] %>  <br/><br/>
+<% if flash[:notice] %>
+
+   <%= flash[:notice] %>
+
+<% end %> <br/><br/>
 
 
 <% if @sites.empty? %>

@@ -52,7 +52,7 @@
         </div>
         <div class="titleareass_starts">
             <div class="titlebox_one"> Web Address </div>
-            http:// <input type="text" maxlength="75" id="site_name" name="site[name]" class="short" value=<%= @sub_domain.to_s %> /> .mfp.vpros.org
+            http:// <input type="text" maxlength="75" id="site_name" name="site[name]" class="short" value= '<%= @sub_domain.to_s %>' />.<%= APP_CONFIG['site_url'] %>
         </div> <br /> 
 
 </div>

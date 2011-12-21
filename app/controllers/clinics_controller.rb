@@ -1,7 +1,7 @@
 class ClinicsController < ApplicationController
   
     before_filter :authenticate_user!
-    before_filter :find_permission, :except => [:index]
+    before_filter :find_permission #, :except => [:index]
 	layout 'admin'
     
 	def index

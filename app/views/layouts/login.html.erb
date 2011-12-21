@@ -41,12 +41,10 @@ a:active {
                         <ul style="list-style:none;">
                           <li><%= link_to "Sign in", "/users/sign_in" %></li>
                           <li>
-                              <% if @current_site.nil? || @current_site.name == "mfp" %>
-                                  <%= link_to "Sign up", "/users/sign_up" %>
-                              <% elsif @current_site.name == "admin" %>
-                                  <%= link_to "Sign Up", "/users/sign_up" %>
-                              <% elsif !@current_site.nil? && @current_site.name != "mfp"  %>
-                                  <%= link_to "Registration", "/sign_up_user" %>
+                              <% if @current_site.nil? || @current_site.name == "admin" %>
+                                 <%= link_to "Sign up", "/users/sign_up" %>
+                              <% elsif !@current_site.nil? %>
+                                 <%= link_to "Registration", "/sign_up_user" %>
                               <% end %>
                           </li>
                           <li><%= link_to "Forgot your password?", "/users/password/new" %></li>

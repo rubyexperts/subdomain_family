@@ -1,6 +1,6 @@
 
 development:
-  site_url: "mfp.familypractice.in:3000"
+  site_url: "familypractice.in:3000"
 
 production:
-  site_url: "mfp.vpros.org"
+  site_url: "vpros.org"

@@ -7,7 +7,7 @@ class HomeController < ApplicationController
  
   def index
     if current_user.is_admin?
-      redirect_to "/admin"
+      redirect_to "/clinics"
     elsif current_user.is_doctor?
       redirect_to "/doctors"
     elsif current_user.is_patient?

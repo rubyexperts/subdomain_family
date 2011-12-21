@@ -5,7 +5,7 @@
 
      You have been invited to the Family Practice Site with the URL <br/>
      Click here ( 
-     <% if @current_site.nil? || @current_site.name == "mfp"  %>
+     <% if @current_site.nil? %>
          <a href="http://<%= APP_CONFIG['site_url'] %>">http://<%= APP_CONFIG['site_url'] %></a>
      <% else %>
          <a href="http://<%= @current_site.name %>.<%= APP_CONFIG['site_url'] %>">http://<%= @current_site.name %>.<%= APP_CONFIG['site_url'] %></a>
